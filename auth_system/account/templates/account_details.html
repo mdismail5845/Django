@@ -1,0 +1,149 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<!-- DASHBOARD CONTAINER -->
+<section class="py-10">
+  <div class="max-w-7xl mx-auto px-6 space-y-8">
+
+    <!-- Top Overview -->
+    <div>
+      <h1 class="text-3xl font-semibold mb-2">Account Dashboard</h1>
+      <p class="text-gray-600">
+        Overview of your account activity, security, and profile information.
+      </p>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="mb-2 p-2 font-medium
+            {% if message.tags == 'success' %}text-green-600{% endif %}
+            {% if message.tags == 'error' %}text-red-600{% endif %}
+            {% if message.tags == 'warning' %}text-yellow-500{% endif %}
+            {% if message.tags == 'info' %}text-blue-600{% endif %}
+          ">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <!-- Stats Row -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+      <div class="border rounded-xl p-5">
+        <h3 class="text-sm text-gray-500">Account Status</h3>
+        <p class="text-xl font-semibold mt-2">
+          {% if request.user.is_active %}Active{% else %}Inactive{% endif %}
+        </p>
+      </div>
+
+      <div class="border rounded-xl p-5">
+        <h3 class="text-sm text-gray-500">Email Verification</h3>
+        <p class="text-xl font-semibold mt-2">
+          {% if request.user.is_active %}Verified{% else %}Not Verified{% endif %}
+        </p>
+      </div>
+
+      <div class="border rounded-xl p-5">
+        <h3 class="text-sm text-gray-500">Last Login</h3>
+        <p class="text-xl font-semibold mt-2">
+          {% if request.user.last_login %}{{ request.user.last_login|date:"M d, Y, h:i A" }}{% else %}Never{% endif %}
+        </p>
+      </div>
+
+      <div class="border rounded-xl p-5">
+        <h3 class="text-sm text-gray-500">Account Role</h3>
+        <p class="text-xl font-semibold mt-2">
+          {% if request.user.is_seller %}Seller{% else %}Customer{% endif %}
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- Profile Info -->
+      <div class="lg:col-span-2 border rounded-xl p-6">
+        <h2 class="text-xl font-semibold mb-4">Profile Information</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+
+          <div>
+            <p class="text-gray-500">Full Name</p>
+            <p class="font-medium">{{ request.user.name }}</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500">Email Address</p>
+            <p class="font-medium">{{ request.user.email }}</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500">City</p>
+            <p class="font-medium">{{ request.user.city|default:"N/A" }}</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500">Member Since</p>
+            <p class="font-medium">{{ request.user.created_at|date:"M d, Y" }}</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Security Panel -->
+      <div class="border rounded-xl p-6">
+        <h2 class="text-xl font-semibold mb-4">Security</h2>
+
+        <ul class="space-y-4 text-sm">
+          <li class="flex justify-between">
+            <span>Password</span>
+            <span class="font-medium">••••••••</span>
+          </li>
+
+          <li class="flex justify-between">
+            <span>Two-Factor Auth</span>
+            <span class="font-medium">Disabled</span>
+          </li>
+
+          <li class="flex justify-between">
+            <span>Login Alerts</span>
+            <span class="font-medium">Enabled</span>
+          </li>
+        </ul>
+
+        <button class="mt-6 w-full border py-2 rounded-lg text-sm hover:bg-gray-100 transition">
+          Manage Security
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Activity Section -->
+    <div class="border rounded-xl p-6">
+      <h2 class="text-xl font-semibold mb-4">Recent Activity</h2>
+
+      <ul class="space-y-3 text-sm">
+        {% if request.user.last_login %}
+        <li class="flex justify-between">
+          <span>Last Login</span>
+          <span class="text-gray-500">{{ request.user.last_login|date:"M d, Y, h:i A" }}</span>
+        </li>
+        {% endif %}
+
+        <li class="flex justify-between">
+          <span>Email Verification Status</span>
+          <span class="text-gray-500">{% if request.user.is_active %}Verified{% else %}Not Verified{% endif %}</span>
+        </li>
+
+        <li class="flex justify-between">
+          <span>Account Role</span>
+          <span class="text-gray-500">{% if request.user.is_seller %}Seller{% else %}Customer{% endif %}</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+{% endblock content %}

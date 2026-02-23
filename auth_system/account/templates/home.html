@@ -1,0 +1,82 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Home Section -->
+<section id="home" class="relative flex flex-col items-center justify-center h-screen w-full bg-cover bg-center" 
+    style="background-image: url('{% static 'img/bg1.jpg' %}');">
+    <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/50 via-blue-300/20 to-white/90"></div>
+    <div class="relative text-center w-full max-w-6xl px-4"> 
+        <h1 class="text-4xl md:text-6xl font-serif text-white mb-3">Welcome to MyOnlineMeal</h1>
+        <p class="text-white text-lg md:text-xl mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis dolorum numquam minus.</p>
+        <p class="text-white text-lg md:text-xl mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+        <button class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg text-lg hover:from-cyan-400 hover:to-blue-600 transition">Order Now</button>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-12 w-full">
+    <h1 class="text-3xl md:text-5xl font-serif text-center mb-6">Our Services</h1>
+    <div class="flex flex-col md:flex-row gap-6 justify-center max-w-6xl mx-auto">
+        <!-- Box 1 -->
+        <div class="flex-1 bg-gradient-to-r from-blue-800 to-cyan-400 p-5 rounded-2xl shadow-lg text-white">
+            <img src="{% static 'img/1.png' %}" alt="Food Catering" class="h-36 mx-auto mb-3">
+            <h2 class="text-2xl font-serif text-center mb-2">Food Catering</h2>
+            <p class="text-center text-sm md:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, culpa suscipit error.</p>
+        </div>
+        <!-- Box 2 -->
+        <div class="flex-1 bg-gradient-to-r from-blue-800 to-cyan-400 p-5 rounded-2xl shadow-lg text-white">
+            <img src="{% static 'img/2.png' %}" alt="Bulk Ordering" class="h-36 mx-auto mb-3">
+            <h2 class="text-2xl font-serif text-center mb-2">Bulk Ordering</h2>
+            <p class="text-center text-sm md:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, culpa suscipit error.</p>
+        </div>
+        <!-- Box 3 -->
+        <div class="flex-1 bg-gradient-to-r from-blue-800 to-cyan-400 p-5 rounded-2xl shadow-lg text-white">
+            <img src="{% static 'img/3.png' %}" alt="Food Ordering" class="h-36 mx-auto mb-3">
+            <h2 class="text-2xl font-serif text-center mb-2">Food Ordering</h2>
+            <p class="text-center text-sm md:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, culpa suscipit error.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Section -->
+<section id="clients" class="py-12 bg-gray-100 w-full">
+    <h1 class="text-3xl md:text-5xl font-serif text-center mb-6">Our Clients</h1>
+    <div class="flex flex-wrap justify-center items-center gap-6 max-w-6xl mx-auto">
+        <img src="{% static 'img/logo1.png' %}" alt="Client 1" class="h-20">
+        <img src="{% static 'img/logo2.png' %}" alt="Client 2" class="h-20">
+        <img src="{% static 'img/logo3.png' %}" alt="Client 3" class="h-20">
+        <img src="{% static 'img/logo4.png' %}" alt="Client 4" class="h-20">
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="relative py-12 w-full bg-cover bg-center" style="background-image: url('{% static 'img/contact.jpg' %}');">
+    <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/60 to-blue-500/80"></div>
+    <div class="relative max-w-2xl mx-auto bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+        <h1 class="text-3xl md:text-4xl font-serif text-center mb-6 text-gray-900">Contact Us</h1>
+        <form class="space-y-4 md:space-y-6">
+            <div>
+                <label for="name" class="block text-lg font-serif mb-1 text-gray-800">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+                <label for="email" class="block text-lg font-serif mb-1 text-gray-800">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+                <label for="phone" class="block text-lg font-serif mb-1 text-gray-800">Phone Number:</label>
+                <input type="tel" id="phone" placeholder="Enter your phone" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+                <label for="message" class="block text-lg font-serif mb-1 text-gray-800">Message:</label>
+                <textarea id="message" rows="5" placeholder="Your message" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg hover:from-cyan-400 hover:to-blue-600 transition text-lg">Send Message</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock content %}

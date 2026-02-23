@@ -1,0 +1,21 @@
+{
+  "name": "z_dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "account": "npx @tailwindcss/cli -i ./src/account.css -o ./../account/static/css/output.css --watch",
+    "customer": "npx @tailwindcss/cli -i ./src/customer.css -o ./../customer/static/css/output.css --watch",
+    "seller": "npx @tailwindcss/cli -i ./src/seller.css -o ./../seller/static/css/output.css --watch",
+    "dev": "concurrently \"npm run account\" \"npm run customer\" \"npm run seller\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18",
+    "concurrently": "^8.2.0"
+  }
+}

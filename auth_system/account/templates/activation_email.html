@@ -1,0 +1,51 @@
+<div class="w-full bg-gray-100 p-6 flex justify-center">
+    <div class="max-w-lg w-full bg-white rounded-lg shadow-md overflow-hidden">
+
+        <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#f4f6f8">
+            <tr>
+            <td align="center" style="padding:40px 20px;">
+
+                <table width="500" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="border-radius:10px; padding:30px;">
+                
+                <tr>
+                    <td align="center">
+                    <h2 style="margin:0;">Welcome, {{ name }} 👋</h2>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" style="padding:20px 0; color:#555;">
+                    <p style="margin:0; font-size:15px;">
+                        We're excited to have you on board!  
+                        Please confirm your email address to activate your account.
+                    </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" style="padding:20px 0;">
+                    <table cellpadding="0" cellspacing="0">
+                        <tr>
+                        <td bgcolor="#2563eb" style="border-radius:8px;">
+                            <a href="{{ activation_link }}"
+                            style="display:inline-block;
+                                    padding:14px 28px;
+                                    font-size:16px;
+                                    font-weight:bold;
+                                    color:#ffffff;
+                                    text-decoration:none;
+                                    border-radius:8px;">
+                            Activate Account
+                            </a>
+                        </td>
+                        </tr>
+                    </table>
+                    </td>
+                </tr>
+                </table>
+
+            </td>
+            </tr>
+        </table>
+    </div>
+</div>
