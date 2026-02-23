@@ -7,23 +7,24 @@ from account.forms import RegisterForm
 from django.contrib import messages
 from account.utils import sent_activation_email, send_password_reset_email
 from account.models import User
-from django.contrib.auth import get_user_model, authenticate,login
+from django.contrib.auth import get_user_model, authenticate, login
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from account.forms import StyledSetPasswordForm as SetPasswordForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 
+User = get_user_model()
 
-# Create your views here.
-User =  get_user_model()
-
+#==== Home page view ======
 def home(request):
     return render(request,'home.html')
 
+#==== Register view ======
 def register(request):
-    if request.method== 'POST':
+    if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
+            # Create inactive user
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.is_active = False
@@ -35,6 +36,7 @@ def register(request):
         form = RegisterForm()
     return render(request,'register.html',{'form':form})
 
+#==== Activate account view ======
 def activate_account(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -42,10 +44,10 @@ def activate_account(request, uidb64, token):
         if user.is_active:
             messages.info(request,'Your account is already activated. Please log in.')
             return redirect('login')
-        
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
+    # Validate token
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
@@ -55,8 +57,9 @@ def activate_account(request, uidb64, token):
         messages.error(request,'Activation link is invalid!')
         return redirect('home')
 
+#==== Resend activation email view ======
 def resend_email(request):
-    if request.method =='POST':
+    if request.method == 'POST':
         email = request.POST.get('email')
         try:
             user = User.objects.get(email=email)
@@ -72,7 +75,9 @@ def resend_email(request):
         return redirect('login')
     return render(request,'resend_email.html')
 
+#==== Login view ======
 def login_view(request):
+    # Redirect already authenticated users
     if request.user.is_authenticated:
         if request.user.is_seller:
             return redirect('seller_dashboard')
@@ -103,15 +108,14 @@ def login_view(request):
 
     return render(request,'login.html')
 
+#==== Change password view ======
 @login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-
             update_session_auth_hash(request, user)
-
             messages.success(request, 'Your password has been changed successfully.')
             return redirect('account_details')
         else:
@@ -121,6 +125,7 @@ def change_password(request):
 
     return render(request, 'change_password.html', {'form': form})
 
+#==== Reset password request view ======
 def reset_password(request):
     if request.method == 'POST':
         form = PasswordResetForm(request.POST)
@@ -139,6 +144,7 @@ def reset_password(request):
         
     return render(request,'reset_password.html')
 
+#==== Reset password confirm view ======
 def reset_password_confirm(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -147,6 +153,7 @@ def reset_password_confirm(request, uidb64, token):
         if not default_token_generator.check_token(user, token):
             messages.error(request,'This link is expired or invalid. Please request a new password reset.')
             return redirect('reset_password')
+        
         if request.method == 'POST':
             form = SetPasswordForm(user, request.POST)
             if form.is_valid():
@@ -154,6 +161,7 @@ def reset_password_confirm(request, uidb64, token):
                 messages.success(request, 'Your password has been reset successfully. You can now log in.')
                 return redirect('login')
             else:
+                # Show form errors
                 for field, errors in form.errors.items():
                     for error in errors:
                         messages.error(request, f"{field}: {error}")
@@ -166,8 +174,10 @@ def reset_password_confirm(request, uidb64, token):
         messages.error(request,'Invalid password reset link. Please request a new one.')
         return redirect('reset_password')
 
+#==== Reset password done view ======
 def reset_password_done(request):
     return render(request,'reset_password_done.html')
 
+#==== Account details view ======
 def account_details(request):
     return render(request,'account_details.html')

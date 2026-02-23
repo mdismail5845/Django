@@ -2,34 +2,50 @@
 {% block title %}Resend Activation{% endblock title %}
 
 {% block content %}
+<!-- Container -->
 <div class="flex justify-center min-h-screen m-4">
+    <!-- Card -->
     <div class="w-full max-w-md bg-gray-700 p-8 rounded-lg shadow-md">
+
+        <!-- Header -->
         <h2 class="text-2xl font-bold mb-6 text-center">Resend Activation Email</h2>
 
+        <!-- Messages -->
         {% if messages %}
             <ul>
                 {% for message in messages %}
+                    <!-- Single Message -->
                     <li class="text-red-500 mb-2">{{ message }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
 
+        <!-- Form -->
         <form method="POST" class="space-y-4">
             {% csrf_token %}
+
+            <!-- Email Field -->
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
                 <input type="email" name="email" id="email" required
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900">
             </div>
+
+            <!-- Submit Button -->
             <button type="submit"
                 class="w-full bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-950 hover:font-bold transition">
                 Resend Activation Email
             </button>
         </form>
+        <!-- End Form -->
 
+        <!-- Login Link -->
         <p class="mt-4 text-sm text-center">
             Remembered your password? <a href="{% url 'login' %}" class="text-gray-100 hover:underline">Login</a>
         </p>
+
     </div>
+    <!-- End Card -->
 </div>
+<!-- End Container -->
 {% endblock content %}
