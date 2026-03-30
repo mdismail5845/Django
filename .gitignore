@@ -1,0 +1,14 @@
+#virtual_env
+.env
+env
+.venv
+
+#Database
+*.sqlite3
+
+*.pyc
+__pycache__/
+
+
+#tailwind css
+z_dev/

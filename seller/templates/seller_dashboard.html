@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Home Section -->
+<section class="relative flex flex-col items-center justify-center h-screen w-full bg-cover bg-center" 
+    style="background-image: url('{% static 'img/bg1.jpg' %}');">
+    <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/50 via-blue-300/20 to-white/90"></div>
+    <div class="relative text-center w-full max-w-6xl px-4"> 
+        <h1 class="text-4xl md:text-6xl font-serif text-white mb-3">Welcome, {{ request.user.name }}!</h1>
+        <p class="text-white text-lg md:text-xl mb-2">Manage your products and orders efficiently.</p>
+        <button class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg text-lg hover:from-cyan-400 hover:to-blue-600 transition">Manage Orders</button>
+    </div>
+</section>
+
+<!-- Products/Services Section -->
+<section class="py-12 w-full">
+    <h1 class="text-3xl md:text-5xl font-serif text-center mb-6">Your Products</h1>
+    <div class="flex flex-col md:flex-row gap-6 justify-center max-w-6xl mx-auto">
+        <div class="flex-1 bg-gradient-to-r from-blue-800 to-cyan-400 p-5 rounded-2xl shadow-lg text-white">
+            <img src="{% static 'img/1.png' %}" alt="Product 1" class="h-36 mx-auto mb-3">
+            <h2 class="text-2xl font-serif text-center mb-2">Product 1</h2>
+            <p class="text-center text-sm md:text-base">Manage pricing and stock here.</p>
+        </div>
+        <div class="flex-1 bg-gradient-to-r from-blue-800 to-cyan-400 p-5 rounded-2xl shadow-lg text-white">
+            <img src="{% static 'img/2.png' %}" alt="Product 2" class="h-36 mx-auto mb-3">
+            <h2 class="text-2xl font-serif text-center mb-2">Product 2</h2>
+            <p class="text-center text-sm md:text-base">Manage pricing and stock here.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Section -->
+<section class="py-12 bg-gray-100 w-full">
+    <h1 class="text-3xl md:text-5xl font-serif text-center mb-6">Your Clients</h1>
+    <div class="flex flex-wrap justify-center items-center gap-6 max-w-6xl mx-auto">
+        <img src="{% static 'img/logo1.png' %}" alt="Client 1" class="h-20">
+        <img src="{% static 'img/logo2.png' %}" alt="Client 2" class="h-20">
+        <img src="{% static 'img/logo3.png' %}" alt="Client 3" class="h-20">
+        <img src="{% static 'img/logo4.png' %}" alt="Client 4" class="h-20">
+    </div>
+</section>
+
+{% endblock content %}

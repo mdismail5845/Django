@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-100 dark:bg-gray-800">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MyApp{% endblock %}</title>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+
+<body class="min-h-screen text-gray-900 dark:text-gray-100 flex  flex-col">
+
+    <!-- Navbar -->
+    {% include "core/navbar.html" %}
+
+    <!-- Page Content -->
+    <main class="md:pt-16 flex-glow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer (optional) -->
+    {% include "core/footer.html" %}
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+</body>
+</html>
