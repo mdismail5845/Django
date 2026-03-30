@@ -36,15 +36,15 @@ Custom-authentication-System-Django/
    git clone https://github.com/mdismail5845/Custom-authentication-System-Django.git
    cd Custom-authentication-System-Django
 
-2. Create and activate a Python virtual environment
+3. Create and activate a Python virtual environment
 python -m venv venv
 source venv/bin/activate      # macOS / Linux
 venv\Scripts\activate         # Windows
 
-3. Install dependencies
+4. Install dependencies
 pip install -r requirements.txt
 
-4. Apply migrations and run
+5. Apply migrations and run
 
 python manage.py makemigrations
 python manage.py migrate
